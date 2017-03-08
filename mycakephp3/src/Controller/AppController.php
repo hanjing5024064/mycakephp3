@@ -50,6 +50,27 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
         //$this->loadComponent('Csrf');
+
+        $this->loadComponent('Auth', [
+            'authorize' => [
+                'controller'
+            ],
+            'authenticate' => [
+                'Form' => [
+                    'finder' => 'auth'
+                ]
+            ],
+            'loginRedirect' => [
+                'controller' => 'Users',
+                'action' => 'index'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Users',
+                'action' => 'login',
+                'home'
+            ]
+        ]);
+
     }
 
     /**
@@ -65,5 +86,18 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+    }
+
+    public function isAuthorized(){
+        //Admin can access every action
+        $nowAction = empty($this->request->getParam('action'))?'index':$this->request->getParam('action');
+        $nowControllerAction = $this->request->getParam('controller').'-'.$nowAction;
+        $roleActions = $this->request->session()->read('roleActions');
+        if(in_array($nowControllerAction, $roleActions)){
+            return true;
+        }
+
+        //Default deny
+        return false;
     }
 }
