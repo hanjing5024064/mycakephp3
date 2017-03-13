@@ -43,6 +43,12 @@ use Cake\Routing\Route\DashedRoute;
  */
 Router::defaultRouteClass(DashedRoute::class);
 
+//微信
+Router::scope('/wc', function (RouteBuilder $routes){
+    //服务器接入使用, 微信后台配置访问路径http://your.com/wc/
+    $routes->connect('/', ['controller' => 'HomepageWC', 'action' => 'join']);
+});
+
 Router::scope('/', function (RouteBuilder $routes) {
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',

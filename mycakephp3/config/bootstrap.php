@@ -220,3 +220,10 @@ Type::build('timestamp')
 if (Configure::read('debug')) {
     Plugin::load('DebugKit', ['bootstrap' => true]);
 }
+
+//load config according to debug
+if (Configure::read('debug')) {//测试环境
+    Configure::load('wechat_test', 'default', false);
+}else{//真实环境
+    Configure::load('wechat', 'default', false);
+}
