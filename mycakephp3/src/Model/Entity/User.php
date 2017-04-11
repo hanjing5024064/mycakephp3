@@ -10,6 +10,11 @@ use Cake\Auth\DefaultPasswordHasher;
  * @property int $id
  * @property string $username
  * @property string $password
+ * @property string $wxpenid
+ * @property string $wxuuid
+ * @property string $wxnickname
+ * @property string $wxheadimgurl
+ * @property string $description
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  *

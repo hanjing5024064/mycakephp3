@@ -227,3 +227,4 @@ if (Configure::read('debug')) {//测试环境
 }else{//真实环境
     Configure::load('wechat', 'default', false);
 }
+Plugin::load('Migrations');

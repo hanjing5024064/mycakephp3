@@ -18,6 +18,11 @@
         <?php
             echo $this->Form->control('username');
             echo $this->Form->control('password');
+            echo $this->Form->control('wxpenid');
+            echo $this->Form->control('wxuuid');
+            echo $this->Form->control('wxnickname');
+            echo $this->Form->control('wxheadimgurl');
+            echo $this->Form->control('description');
             echo $this->Form->control('roles._ids', ['options' => $roles]);
         ?>
     </fieldset>

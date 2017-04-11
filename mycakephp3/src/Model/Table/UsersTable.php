@@ -60,10 +60,27 @@ class UsersTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('username');
+            ->requirePresence('username', 'create')
+            ->notEmpty('username');
 
         $validator
-            ->allowEmpty('password');
+            ->requirePresence('password', 'create')
+            ->notEmpty('password');
+
+        $validator
+            ->allowEmpty('wxpenid');
+
+        $validator
+            ->allowEmpty('wxuuid');
+
+        $validator
+            ->allowEmpty('wxnickname');
+
+        $validator
+            ->allowEmpty('wxheadimgurl');
+
+        $validator
+            ->allowEmpty('description');
 
         return $validator;
     }
