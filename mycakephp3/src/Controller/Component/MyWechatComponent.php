@@ -49,6 +49,22 @@ class MyWechatComponent extends Component
                         break;
                 }
             }
+            switch($message->MsgType){
+                case 'text':
+                    switch($message->Content){
+                        case 'info':
+                            $userSer = $this->application->user;
+                            $user = $userSer->get($message->FromUserName);
+                            return 'UnionID:'."\n".$user->unionid . "\n" .'OpenID:'. "\n" .$user->openid;
+                            break;
+                        default:
+                            return 'I  cant understand you.';
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
         });
         $response = $server->serve();
         $response->send();
@@ -92,7 +108,6 @@ class MyWechatComponent extends Component
     public function join(){
         $app = $this->application;
         $response = $app->server->serve();
-
         // 将响应输出
         $response->send();
         exit();

@@ -8,9 +8,9 @@
 return [
     'wx_config' => [
         'debug'  => true,
-        'app_id' => 'your appid',
-        'secret' => 'your secret',
-        'token'  => 'your token',
+        'app_id' => 'wx90728656203b30c9',
+        'secret' => '90134286074bd506f7e8d53a48dd932c',
+        'token'  => 'rmMlzMkRRywfNbA4QrWrmMKSKnvyZ0kW',
         // 'aes_key' => null, // 可选
         'log' => [
             'level' => 'debug',

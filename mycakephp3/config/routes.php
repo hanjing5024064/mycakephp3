@@ -46,7 +46,13 @@ Router::defaultRouteClass(DashedRoute::class);
 //微信
 Router::scope('/wc', function (RouteBuilder $routes){
     //服务器接入使用, 微信后台配置访问路径http://your.com/wc/
-    $routes->connect('/', ['controller' => 'HomepageWC', 'action' => 'join']);
+//    $routes->connect('/', ['controller' => 'HomepageWC', 'action' => 'join']);
+
+    //微信处理逻辑
+    $routes->connect('/', ['controller' => 'HomepageWC', 'action' => 'index']);
+
+    //授权回调
+    $routes->connect('/oauth_callback', ['controller' => 'HomepageWC', 'action' => 'oauthCallback']);
 });
 
 Router::scope('/', function (RouteBuilder $routes) {

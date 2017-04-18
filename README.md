@@ -32,3 +32,16 @@ some functions use cakephp3: user/role, menu, wechat...
  change to your database parameters/修改为你的数据库链接参数
 
 4. visite/访问
+
+
+微信接入
+1. 修改配置文件config/wechat_test.php
+    填写自己的appid, appsecret, token
+2. 微信公众号后台开启开发者模式,并做相应配置
+    设置服务器地址为http://yourdomain/wc
+3. 设置自定义菜单
+    访问：http://yourdomain/homepage-w-c/set-menu
+
+4. 调试信息
+    公众号内回复info
+    将获得当前用户openid及unionid

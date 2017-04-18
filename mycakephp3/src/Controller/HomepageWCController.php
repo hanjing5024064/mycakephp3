@@ -14,6 +14,7 @@ class HomepageWCController extends AppController
     {
         parent::initialize();
         $this->loadComponent('MyWechat');
+        $this->Auth->allow();
     }
 
     /**
@@ -21,6 +22,13 @@ class HomepageWCController extends AppController
      */
     public function join(){
         $this->MyWechat->join();
+    }
+
+    /**
+     * 微信服务处理
+     */
+    public function index(){
+        $this->MyWechat->index();
     }
 
     /**
