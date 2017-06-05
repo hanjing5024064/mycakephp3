@@ -13,6 +13,9 @@
 </nav>
 <div class="actions index large-9 medium-8 columns content">
     <h3><?= __('Actions') ?></h3>
+    <div class="definewidth m20">
+        <?= $this->element('search_index', ['fields' => ['name'=>'string', 'created'=>'from-to'], 'text' => ['名称', '创建日期', '创建日期']]);?>
+    </div>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
