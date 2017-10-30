@@ -4,20 +4,19 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * User Entity
+ * UserWechat Entity
  *
  * @property int $id
- * @property string $username
- * @property string $password
- * @property int $head_img
- * @property string $from_where
- * @property bool $if_active
+ * @property int $user_id
+ * @property string $nickname
+ * @property string $headimgurl
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  *
- * @property \App\Model\Entity\Role[] $roles
+ * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\UserWechatOpenid[] $user_wechat_openids
  */
-class User extends Entity
+class UserWechat extends Entity
 {
 
     /**
@@ -32,14 +31,5 @@ class User extends Entity
     protected $_accessible = [
         '*' => true,
         'id' => false
-    ];
-
-    /**
-     * Fields that are excluded from JSON versions of the entity.
-     *
-     * @var array
-     */
-    protected $_hidden = [
-        'password'
     ];
 }

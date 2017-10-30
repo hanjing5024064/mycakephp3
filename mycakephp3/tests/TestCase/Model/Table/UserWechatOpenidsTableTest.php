@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\UsersTable;
+use App\Model\Table\UserWechatOpenidsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\UsersTable Test Case
+ * App\Model\Table\UserWechatOpenidsTable Test Case
  */
-class UsersTableTest extends TestCase
+class UserWechatOpenidsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\UsersTable
+     * @var \App\Model\Table\UserWechatOpenidsTable
      */
-    public $Users;
+    public $UserWechatOpenids;
 
     /**
      * Fixtures
@@ -24,11 +24,14 @@ class UsersTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
+        'app.user_wechat_openids',
+        'app.user_wechats',
         'app.users',
         'app.roles',
         'app.actions',
         'app.roles_actions',
-        'app.users_roles'
+        'app.users_roles',
+        'app.wechat_gzhs'
     ];
 
     /**
@@ -39,8 +42,8 @@ class UsersTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Users') ? [] : ['className' => 'App\Model\Table\UsersTable'];
-        $this->Users = TableRegistry::get('Users', $config);
+        $config = TableRegistry::exists('UserWechatOpenids') ? [] : ['className' => 'App\Model\Table\UserWechatOpenidsTable'];
+        $this->UserWechatOpenids = TableRegistry::get('UserWechatOpenids', $config);
     }
 
     /**
@@ -50,7 +53,7 @@ class UsersTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Users);
+        unset($this->UserWechatOpenids);
 
         parent::tearDown();
     }
@@ -81,16 +84,6 @@ class UsersTableTest extends TestCase
      * @return void
      */
     public function testBuildRules()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test findAuth method
-     *
-     * @return void
-     */
-    public function testFindAuth()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

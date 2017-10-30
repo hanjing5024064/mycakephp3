@@ -9,6 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
+ * @property \Cake\ORM\Association\HasMany $UserWechats
  * @property \Cake\ORM\Association\BelongsToMany $Roles
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
@@ -40,6 +41,9 @@ class UsersTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->hasMany('UserWechats', [
+            'foreignKey' => 'user_id'
+        ]);
         $this->belongsToMany('Roles', [
             'foreignKey' => 'user_id',
             'targetForeignKey' => 'role_id',
@@ -68,19 +72,16 @@ class UsersTable extends Table
             ->notEmpty('password');
 
         $validator
-            ->allowEmpty('wxpenid');
+            ->integer('head_img')
+            ->allowEmpty('head_img');
 
         $validator
-            ->allowEmpty('wxuuid');
+            ->allowEmpty('from_where');
 
         $validator
-            ->allowEmpty('wxnickname');
-
-        $validator
-            ->allowEmpty('wxheadimgurl');
-
-        $validator
-            ->allowEmpty('description');
+            ->boolean('if_active')
+            ->requirePresence('if_active', 'create')
+            ->notEmpty('if_active');
 
         return $validator;
     }
@@ -97,12 +98,5 @@ class UsersTable extends Table
         $rules->add($rules->isUnique(['username']));
 
         return $rules;
-    }
-
-    public function findAuth(\Cake\ORM\Query $query, array $options){
-        $query->select(['id', 'username', 'password'])
-            ->contain(['Roles']);
-
-        return $query;
     }
 }

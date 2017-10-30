@@ -19,10 +19,9 @@
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('username') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('password') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('wxpenid') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('wxuuid') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('wxnickname') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('wxheadimgurl') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('head_img') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('from_where') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('if_active') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -34,10 +33,9 @@
                 <td><?= $this->Number->format($user->id) ?></td>
                 <td><?= h($user->username) ?></td>
                 <td><?= h($user->password) ?></td>
-                <td><?= h($user->wxpenid) ?></td>
-                <td><?= h($user->wxuuid) ?></td>
-                <td><?= h($user->wxnickname) ?></td>
-                <td><?= h($user->wxheadimgurl) ?></td>
+                <td><?= $this->Number->format($user->head_img) ?></td>
+                <td><?= h($user->from_where) ?></td>
+                <td><?= h($user->if_active) ?></td>
                 <td><?= h($user->created) ?></td>
                 <td><?= h($user->modified) ?></td>
                 <td class="actions">

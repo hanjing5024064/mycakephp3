@@ -4,20 +4,25 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * User Entity
+ * WechatGzh Entity
  *
  * @property int $id
- * @property string $username
- * @property string $password
- * @property int $head_img
- * @property string $from_where
- * @property bool $if_active
+ * @property string $name
+ * @property string $appid
+ * @property string $secret
+ * @property string $token
+ * @property string $oauth_scopes
+ * @property string $oauth_callback
+ * @property string $payment
+ * @property string $menu
+ * @property string $template
+ * @property string $subscribemsg
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  *
- * @property \App\Model\Entity\Role[] $roles
+ * @property \App\Model\Entity\UserWechatOpenid[] $user_wechat_openids
  */
-class User extends Entity
+class WechatGzh extends Entity
 {
 
     /**
@@ -40,6 +45,6 @@ class User extends Entity
      * @var array
      */
     protected $_hidden = [
-        'password'
+        'token'
     ];
 }

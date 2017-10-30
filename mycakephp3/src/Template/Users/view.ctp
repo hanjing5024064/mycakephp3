@@ -26,24 +26,16 @@
             <td><?= h($user->password) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Wxpenid') ?></th>
-            <td><?= h($user->wxpenid) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Wxuuid') ?></th>
-            <td><?= h($user->wxuuid) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Wxnickname') ?></th>
-            <td><?= h($user->wxnickname) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Wxheadimgurl') ?></th>
-            <td><?= h($user->wxheadimgurl) ?></td>
+            <th scope="row"><?= __('From Where') ?></th>
+            <td><?= h($user->from_where) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($user->id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Head Img') ?></th>
+            <td><?= $this->Number->format($user->head_img) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>
@@ -53,11 +45,11 @@
             <th scope="row"><?= __('Modified') ?></th>
             <td><?= h($user->modified) ?></td>
         </tr>
+        <tr>
+            <th scope="row"><?= __('If Active') ?></th>
+            <td><?= $user->if_active ? __('Yes') : __('No'); ?></td>
+        </tr>
     </table>
-    <div class="row">
-        <h4><?= __('Description') ?></h4>
-        <?= $this->Text->autoParagraph(h($user->description)); ?>
-    </div>
     <div class="related">
         <h4><?= __('Related Roles') ?></h4>
         <?php if (!empty($user->roles)): ?>

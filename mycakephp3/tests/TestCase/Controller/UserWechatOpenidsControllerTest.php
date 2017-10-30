@@ -1,13 +1,13 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\UsersController;
+use App\Controller\UserWechatOpenidsController;
 use Cake\TestSuite\IntegrationTestCase;
 
 /**
- * App\Controller\UsersController Test Case
+ * App\Controller\UserWechatOpenidsController Test Case
  */
-class UsersControllerTest extends IntegrationTestCase
+class UserWechatOpenidsControllerTest extends IntegrationTestCase
 {
 
     /**
@@ -16,11 +16,14 @@ class UsersControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
+        'app.user_wechat_openids',
+        'app.user_wechats',
         'app.users',
         'app.roles',
         'app.actions',
         'app.roles_actions',
-        'app.users_roles'
+        'app.users_roles',
+        'app.wechat_gzhs'
     ];
 
     /**
