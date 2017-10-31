@@ -14,6 +14,22 @@ class MyAuthComponent extends Component
 
     }
 
+    //初始化移动端访问权限
+    public function initMBAuth($user){
+        $this->controller->request->session()->write('wechat_user', $user);
+
+        //新增用户
+        $userId = $this->controller->MyUser->checkUserOpenid($user['id']);
+
+        //设置当前用户用户及授权操作
+        $this->controller->request->session()->write('userId', $userId);
+        $this->controller->request->session()->write('roleActions', ['HomepageMb-liveShow']);
+    }
+    public function initMBAuthV2($userId){
+        //设置当前用户用户及授权操作
+        $this->controller->request->session()->write('userId', $userId);
+    }
+
     /**
      * @param null $role
      * @return array ['controllername-actionname', 'controllername-actionname'...]
@@ -67,7 +83,7 @@ class MyAuthComponent extends Component
         if($role === null)return $menuList;
 
         //获得角色授权菜单
-        $roleAction = $this->getRoleActions();//获得角色授权操作
+        $roleAction = $this->getRoleActions($role);//获得角色授权操作
         $this->controller->loadModel('SysMenus');
         $menus = $this->controller->SysMenus->find('all')
             ->where(['SysMenus.controller' => 'ooo'])
@@ -89,6 +105,7 @@ class MyAuthComponent extends Component
             }
             if($hasChildMenu){
                 $menuList[$menuCount]['name'] = $menu['name'];
+                $menuList[$menuCount]['icon'] = $menu['icon'];
                 $menuList[$menuCount]['childMenu'] = $childMenuList;
                 $menuCount++;
             }
@@ -132,8 +149,42 @@ class MyAuthComponent extends Component
 
         $actions = $this->getActionsByRoles($roles);
         $menus = $this->getMenusByRoles($roles);
-
         $this->controller->request->session()->write('roleActions', $actions);
         $this->controller->request->session()->write('menuActions', $menus);
+    }
+    public function rmRoleAuth(){
+        $this->controller->request->session()->delete('User');
+        $this->controller->request->session()->delete('roleActions');
+        $this->controller->request->session()->delete('menuActions');
+    }
+
+    public function setNowMenu(){
+        $nowAction = empty($this->controller->request->param('action')) ? 'index' : $this->request->param('action');
+        $nowController = $this->controller->request->param('controller');
+        if(!$this->request->session()->check('nowMenu'))$this->request->session()->write('nowMenu', ['o', 'o']);
+        $i = 0;
+        $menuActions = $this->request->session()->read('menuActions');
+        if(!$menuActions)return false;
+        $open = false;
+        foreach ($menuActions as $menu){
+            $open = false;
+
+            $j = 0;
+            foreach ($menu['childMenu'] as $childMenu) {
+                if ($nowController === $childMenu['controller'] && $nowAction === $childMenu['action']){
+                    $open = true;
+                    $menuActiveTwo = $j;
+                }
+                if($open)break;
+                $j++;
+            }
+            if($open){
+                $menuActiveOne = $i;
+                break;
+            }
+
+            $i++;
+        }
+        if($open)$this->request->session()->write('nowMenu', [$menuActiveOne, $menuActiveTwo]);
     }
 }

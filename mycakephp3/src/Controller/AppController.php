@@ -45,6 +45,9 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('MySearch');
 
+        //移动端访问
+        $this->isMobile();
+
         /*
          * Enable the following components for recommended CakePHP security settings.
          * see http://book.cakephp.org/3.0/en/controllers/components/security.html
@@ -86,6 +89,35 @@ class AppController extends Controller
             in_array($this->response->type(), ['application/json', 'application/xml'])
         ) {
             $this->set('_serialize', true);
+        }
+    }
+
+    /**
+     * 检查是否通过移动端访问
+     * 移动端访问不通过HomepageMb控制器
+     * @return type
+     */
+    public function isMobile()
+    {
+        /**
+         * 移动端访问时, 特殊处理
+         * 微信端自动登录
+         */
+        $this->loadComponent('MyUtil');
+        if ($this->MyUtil->isMobile()) {
+            //判断访问来源,微信则自动登录,初始化移动端权限
+            if($this->MyUtil->isWechat() && !$this->request->session()->check('userId')){
+                //当前访问链接, 用于登录后跳转
+                $nowAction = empty($this->request->param('action'))?'index':$this->request->param('action');
+                $nowController = $this->request->param('controller');
+
+                $nowWechatGzh = $this->MyWechat->getWechatGzhId();
+
+                //授权回调函数直接返回
+                if($nowController === 'HomepageWC' && $nowAction === 'oauthCallback')return true;
+
+                $this->MyWechat->login("/$nowController/$nowAction?hwId=".$nowWechatGzh);
+            }
         }
     }
 

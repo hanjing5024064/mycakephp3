@@ -38,4 +38,21 @@ class HomepageWCController extends AppController
         $this->MyWechat->setMenu();
     }
 
+    /**
+     * 微信自动登录
+     */
+    public function login(){
+        $this->set('data', $this->MyWechat->login());
+        $this->viewBuilder()->setLayout(false);
+    }
+
+    /**
+     * 网页授权回调
+     */
+    public function oauthCallback(){
+        $targetUrl = $this->MyWechat->oauthCallback();
+        header('location:'. $targetUrl); // 跳转到 user/profile
+        exit();
+    }
+
 }
