@@ -52,7 +52,11 @@ class MySearchComponent extends Component
                                 break;
                         }
                     }
-                }else{
+                }elseif(strpos($key, '_id') !== false){
+                    //do something, foreignKey
+                    if($value !== 'all')$conditions[$controllerName.'.'.$key] = $value;
+                }
+                else{
                     $conditions[$controllerName.'.'.$key.' like'] = "%$value%";
                 }
             }

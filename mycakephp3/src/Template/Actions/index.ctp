@@ -25,7 +25,10 @@
                     </a>
     			</div>
             </div>
-        	<div class="box-body no-padding ">
+
+            <div class="box-body no-padding ">
+
+                <?= $this->element('pc_search_index', ['fields' => ['name'=>'string', 'created'=>'from-to', 'text' => ['名称', '创建日期']]]);?>
 
           		<table class="table table-striped">
           		  <thead>

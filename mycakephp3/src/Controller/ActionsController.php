@@ -20,6 +20,13 @@ class ActionsController extends AppController
      */
     public function index()
     {
+        //set pagenate
+        $conditions = $this->MySearch->getSearchCondition();
+        $this->paginate = [
+            'conditions' =>$conditions,
+            'limit' => 20
+        ];
+
         $actions = $this->paginate($this->Actions);
 
         $this->set(compact('actions'));
