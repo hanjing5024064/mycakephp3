@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+html, body {height:100%;background-color:#fafafa;-webkit-tap-highlight-color:transparent;}
+.container {position:absolute;top:0;right:0;bottom:0;left:0;background-color:#fafafa;}
+.con-spacing {padding:15px;}
+.btns-div {margin-top:10px;}
+
+.float-l {float:left;}
+.float-r {float:right;}
+
+.text-red {color:#dd4b39;}
+.text-yellow {color:#f39c12;}
+.text-light-blue {color:#3c8dbc;}
+.text-green {color:#00a65a;}
+.text-muted {color:#999;}
+
+.img-block {display:block;margin:5px 0;max-width:100%;}
+
+/* weui */
+.hidden {display:none;}
+.weui-toptips {display:block;z-index:99;padding:0;}
+.weui-toptips .message {padding:7px;}
+.weui-toptips .message.success {color:#3c763d;background-color:#dff0d8;border-bottom:1px solid #d6e9c6;}
+.weui-toptips .message.error {color:#a94442;background-color:#f2dede;border-bottom:1px solid #ebccd1;}
+
+.weui-cells_form .error-message {margin-top:3px;font-size:12px;color:#ec0000;}
+.weui-media-box .icon {display:block;margin:0 10px;width:24px;height:24px;}
+.weui-badge_success {background-color:#09bb07;}
+.weui-badge_red {background-color:#dd4b39;}
+.weui-badge_yellow {background-color:#f39c12;}
+.weui-badge_blue {background-color:#3c8dbc;}
+.weui-badge_green {background-color:#00a65a;}
+.weui-badge_muted {background-color:#999;}
+.weui-media-box__desc .text-lg {vertical-align:middle;font-size:16px;}
+
+.weui-form-preview {margin-bottom:15px;}
+.weui-btn .icon {margin-right:5px;width:24px;height:24px;vertical-align:middle;}
+
+.weui-article table {margin-bottom:15px;width:100%;table-layout:fixed;border-collapse:collapse;}
+.weui-article table th,
+.weui-article table td {text-align:center;font-size:10px;border:1px solid #ccc;}
+
+.page__ft {
+    padding-top: 40px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.weui-links {padding:0 15px;}
+
+.weui-switch-check, 
+.weui-switch-check:before {border-color:#ec0000;background-color:#ec0000;}
+
+/* addon */
+.order-panel {
+	display:block;
+	margin:10px;
+	padding-top:5px;
+	border:1px solid #ccc;
+	border-radius:5px;
+	background-color:#FDFEFE;
+	box-shadow:0 3px 3px #ccc;
+}
+.order-panel .order-info {clear:both;height:22px;padding:0 8px;font-size:12px;color:#000;}
+.order-panel .line {margin:5px 0;height:1px;background:#ccc;}
+.order-panel .icon {width:14px;height:14px;}

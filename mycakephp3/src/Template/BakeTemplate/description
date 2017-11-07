@@ -1,0 +1,4 @@
+1.修改文件的路径：
+    form.ctp    /vendor/cakephp/bake/src/Template/Bake/Element/
+    index.ctp   /vendor/cakephp/bake/src/Template/Bake/Template/
+    view.ctp    /vendor/cakephp/bake/src/Template/Bake/Template/

@@ -74,6 +74,8 @@ class AppController extends Controller
                 'home'
             ]
         ]);
+
+        $this->viewBuilder()->setLayout('pc');
     }
 
     /**
