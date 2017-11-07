@@ -35,7 +35,6 @@ if (isset($modelObject) && $modelObject->hasBehavior('Tree')) {
 
     <?= $this->Form->create($<%= $singularVar %>) ?>
         <div class="box-body">
-            <?php
 <%
         foreach ($fields as $field) {
             if (in_array($field, $primaryKey)) {
@@ -44,7 +43,6 @@ if (isset($modelObject) && $modelObject->hasBehavior('Tree')) {
             if (isset($keyFields[$field])) {
 
             %>
-            ?>
 
             <div class='row'>
                 <div class="col-md-3">
@@ -76,7 +74,6 @@ if (isset($modelObject) && $modelObject->hasBehavior('Tree')) {
             if (!in_array($field, ['created', 'modified', 'updated'])) {
 
             %>
-            ?>
 
             <div class='row'>
                 <div class="col-md-3">
@@ -91,7 +88,7 @@ if (isset($modelObject) && $modelObject->hasBehavior('Tree')) {
 <%
                } else if(in_array($fieldData['type'], ['int','tinyint','boolean'])){
 %>
-            echo $this->Form->control('<%= $field %>',['class'=>'form-control']);
+            echo $this->Form->control('<%= $field %>');
 <%
                 } else {
 %>
