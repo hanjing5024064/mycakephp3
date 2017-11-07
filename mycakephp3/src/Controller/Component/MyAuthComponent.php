@@ -191,5 +191,6 @@ class MyAuthComponent extends Component
         $this->controller->request->session()->delete('wechat_user');
         $this->controller->request->session()->delete('roleActions');
         $this->controller->request->session()->delete('menuActions');
+        $this->controller->request->session()->delete('searchArray');
     }
 }
