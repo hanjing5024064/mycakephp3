@@ -137,25 +137,7 @@ class MyAuthComponent extends Component
             $eachRoleMenus = $this->getRoleMenus($role['name']);
             $actions = array_merge($actions, $eachRoleMenus);
         }
-
         return $actions;
-    }
-
-    /**
-     * @param array $roles Roles Object Array
-     */
-    public function initRoleAuth(Array $roles){
-        if($roles === array())return;
-
-        $actions = $this->getActionsByRoles($roles);
-        $menus = $this->getMenusByRoles($roles);
-        $this->controller->request->session()->write('roleActions', $actions);
-        $this->controller->request->session()->write('menuActions', $menus);
-    }
-    public function rmRoleAuth(){
-        $this->controller->request->session()->delete('User');
-        $this->controller->request->session()->delete('roleActions');
-        $this->controller->request->session()->delete('menuActions');
     }
 
     public function setNowMenu(){
@@ -186,5 +168,28 @@ class MyAuthComponent extends Component
             $i++;
         }
         if($open)$this->request->session()->write('nowMenu', [$menuActiveOne, $menuActiveTwo]);
+    }
+
+    /**
+     * 登录时获取用户权限
+     * @param array $roles Roles Object Array
+     */
+    public function initRoleAuth(Array $roles){
+        if($roles === array())return;
+
+        $actions = $this->getActionsByRoles($roles);
+        $menus = $this->getMenusByRoles($roles);
+        $this->controller->request->session()->write('roleActions', $actions);
+        $this->controller->request->session()->write('menuActions', $menus);
+    }
+
+    /**
+     * 用户登出时调用,清空授权
+     */
+    public function removeAuth(){
+        $this->controller->request->session()->delete('userId');
+        $this->controller->request->session()->delete('wechat_user');
+        $this->controller->request->session()->delete('roleActions');
+        $this->controller->request->session()->delete('menuActions');
     }
 }

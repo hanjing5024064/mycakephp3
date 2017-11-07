@@ -11,17 +11,20 @@ use Cake\Event\Event;
  */
 class UsersController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('MyAuth');
+        $this->Auth->allow(['add', 'login', 'logout']);
+    }
+
     public function login()
     {
+        $this->viewBuilder()->setLayout('login');
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
-                //@todo user['roles'][0]....
-                $this->loadComponent('MyAuth');
                 $this->MyAuth->initRoleAuth($user['roles']);
-
-//                var_dump($this->request->session()->read('roleActions'));
-//                die();
 
                 $this->Auth->setUser($user);
                 return $this->redirect($this->Auth->redirectUrl());
@@ -32,6 +35,7 @@ class UsersController extends AppController
 
     public function logout()
     {
+        $this->MyAuth->removeAuth();
         return $this->redirect($this->Auth->logout());
     }
 
