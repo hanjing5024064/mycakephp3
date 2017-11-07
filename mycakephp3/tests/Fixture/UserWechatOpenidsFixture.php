@@ -48,8 +48,8 @@ class UserWechatOpenidsFixture extends TestFixture
             'openid' => 'Lorem ipsum dolor sit amet',
             'uuid' => 'Lorem ipsum dolor sit amet',
             'status' => 1,
-            'created' => '2017-10-30 07:26:03',
-            'modified' => '2017-10-30 07:26:03'
+            'created' => '2017-11-07 05:59:39',
+            'modified' => '2017-11-07 05:59:39'
         ],
     ];
 }

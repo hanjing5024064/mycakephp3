@@ -30,7 +30,8 @@ class UserWechatsTableTest extends TestCase
         'app.actions',
         'app.roles_actions',
         'app.users_roles',
-        'app.user_wechat_openids'
+        'app.user_wechat_openids',
+        'app.wechat_gzhs'
     ];
 
     /**
@@ -41,7 +42,7 @@ class UserWechatsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('UserWechats') ? [] : ['className' => 'App\Model\Table\UserWechatsTable'];
+        $config = TableRegistry::exists('UserWechats') ? [] : ['className' => UserWechatsTable::class];
         $this->UserWechats = TableRegistry::get('UserWechats', $config);
     }
 

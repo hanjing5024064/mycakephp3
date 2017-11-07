@@ -10,8 +10,8 @@ use Cake\ORM\Entity;
  * @property int $user_id
  * @property string $nickname
  * @property string $headimgurl
- * @property \Cake\I18n\Time $created
- * @property \Cake\I18n\Time $modified
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\User $user
  * @property \App\Model\Entity\UserWechatOpenid[] $user_wechat_openids
@@ -29,7 +29,12 @@ class UserWechat extends Entity
      * @var array
      */
     protected $_accessible = [
-        '*' => true,
-        'id' => false
+        'user_id' => true,
+        'nickname' => true,
+        'headimgurl' => true,
+        'created' => true,
+        'modified' => true,
+        'user' => true,
+        'user_wechat_openids' => true
     ];
 }

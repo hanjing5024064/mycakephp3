@@ -18,7 +18,12 @@ class RolesControllerTest extends IntegrationTestCase
     public $fixtures = [
         'app.roles',
         'app.actions',
-        'app.roles_actions'
+        'app.roles_actions',
+        'app.users',
+        'app.user_wechats',
+        'app.user_wechat_openids',
+        'app.wechat_gzhs',
+        'app.users_roles'
     ];
 
     /**

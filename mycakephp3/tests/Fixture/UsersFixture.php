@@ -48,8 +48,8 @@ class UsersFixture extends TestFixture
             'head_img' => 1,
             'from_where' => 'Lorem ipsum dolor sit amet',
             'if_active' => 1,
-            'created' => '2017-10-30 07:25:28',
-            'modified' => '2017-10-30 07:25:28'
+            'created' => '2017-11-07 06:10:01',
+            'modified' => '2017-11-07 06:10:01'
         ],
     ];
 }

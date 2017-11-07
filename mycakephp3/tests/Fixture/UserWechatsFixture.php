@@ -44,8 +44,8 @@ class UserWechatsFixture extends TestFixture
             'user_id' => 1,
             'nickname' => 'Lorem ipsum dolor sit amet',
             'headimgurl' => 'Lorem ipsum dolor sit amet',
-            'created' => '2017-10-30 07:25:52',
-            'modified' => '2017-10-30 07:25:52'
+            'created' => '2017-11-07 05:59:36',
+            'modified' => '2017-11-07 05:59:36'
         ],
     ];
 }

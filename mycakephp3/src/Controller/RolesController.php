@@ -7,6 +7,8 @@ use App\Controller\AppController;
  * Roles Controller
  *
  * @property \App\Model\Table\RolesTable $Roles
+ *
+ * @method \App\Model\Entity\Role[] paginate($object = null, array $settings = [])
  */
 class RolesController extends AppController
 {
@@ -14,7 +16,7 @@ class RolesController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Network\Response|null
+     * @return \Cake\Http\Response|void
      */
     public function index()
     {
@@ -28,13 +30,13 @@ class RolesController extends AppController
      * View method
      *
      * @param string|null $id Role id.
-     * @return \Cake\Network\Response|null
+     * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
         $role = $this->Roles->get($id, [
-            'contain' => ['Actions']
+            'contain' => ['Actions', 'Users']
         ]);
 
         $this->set('role', $role);
@@ -44,7 +46,7 @@ class RolesController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
     public function add()
     {
@@ -59,7 +61,8 @@ class RolesController extends AppController
             $this->Flash->error(__('The role could not be saved. Please, try again.'));
         }
         $actions = $this->Roles->Actions->find('list', ['limit' => 200]);
-        $this->set(compact('role', 'actions'));
+        $users = $this->Roles->Users->find('list', ['limit' => 200]);
+        $this->set(compact('role', 'actions', 'users'));
         $this->set('_serialize', ['role']);
     }
 
@@ -67,13 +70,13 @@ class RolesController extends AppController
      * Edit method
      *
      * @param string|null $id Role id.
-     * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
         $role = $this->Roles->get($id, [
-            'contain' => ['Actions']
+            'contain' => ['Actions', 'Users']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $role = $this->Roles->patchEntity($role, $this->request->getData());
@@ -85,7 +88,8 @@ class RolesController extends AppController
             $this->Flash->error(__('The role could not be saved. Please, try again.'));
         }
         $actions = $this->Roles->Actions->find('list', ['limit' => 200]);
-        $this->set(compact('role', 'actions'));
+        $users = $this->Roles->Users->find('list', ['limit' => 200]);
+        $this->set(compact('role', 'actions', 'users'));
         $this->set('_serialize', ['role']);
     }
 
@@ -93,7 +97,7 @@ class RolesController extends AppController
      * Delete method
      *
      * @param string|null $id Role id.
-     * @return \Cake\Network\Response|null Redirects to index.
+     * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)

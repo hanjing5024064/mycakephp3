@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * WechatGzhs Model
  *
- * @property \Cake\ORM\Association\HasMany $UserWechatOpenids
+ * @property \App\Model\Table\UserWechatOpenidsTable|\Cake\ORM\Association\HasMany $UserWechatOpenids
  *
  * @method \App\Model\Entity\WechatGzh get($primaryKey, $options = [])
  * @method \App\Model\Entity\WechatGzh newEntity($data = null, array $options = [])
@@ -58,37 +58,47 @@ class WechatGzhsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
+            ->scalar('name')
             ->requirePresence('name', 'create')
             ->notEmpty('name');
 
         $validator
+            ->scalar('appid')
             ->requirePresence('appid', 'create')
             ->notEmpty('appid');
 
         $validator
+            ->scalar('secret')
             ->requirePresence('secret', 'create')
             ->notEmpty('secret');
 
         $validator
+            ->scalar('token')
             ->requirePresence('token', 'create')
             ->notEmpty('token');
 
         $validator
+            ->scalar('oauth_scopes')
             ->allowEmpty('oauth_scopes');
 
         $validator
+            ->scalar('oauth_callback')
             ->allowEmpty('oauth_callback');
 
         $validator
+            ->scalar('payment')
             ->allowEmpty('payment');
 
         $validator
+            ->scalar('menu')
             ->allowEmpty('menu');
 
         $validator
+            ->scalar('template')
             ->allowEmpty('template');
 
         $validator
+            ->scalar('subscribemsg')
             ->allowEmpty('subscribemsg');
 
         return $validator;

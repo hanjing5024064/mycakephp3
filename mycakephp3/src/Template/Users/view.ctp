@@ -1,80 +1,70 @@
 <?php
 /**
   * @var \App\View\AppView $this
+  * @var \App\Model\Entity\App\Model\Entity\User $user
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit User'), ['action' => 'edit', $user->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Roles'), ['controller' => 'Roles', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Role'), ['controller' => 'Roles', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="users view large-9 medium-8 columns content">
-    <h3><?= h($user->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Username') ?></th>
-            <td><?= h($user->username) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Password') ?></th>
-            <td><?= h($user->password) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('From Where') ?></th>
-            <td><?= h($user->from_where) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($user->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Head Img') ?></th>
-            <td><?= $this->Number->format($user->head_img) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($user->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modified') ?></th>
-            <td><?= h($user->modified) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('If Active') ?></th>
-            <td><?= $user->if_active ? __('Yes') : __('No'); ?></td>
-        </tr>
-    </table>
-    <div class="related">
-        <h4><?= __('Related Roles') ?></h4>
-        <?php if (!empty($user->roles)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Name') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($user->roles as $roles): ?>
-            <tr>
-                <td><?= h($roles->id) ?></td>
-                <td><?= h($roles->name) ?></td>
-                <td><?= h($roles->created) ?></td>
-                <td><?= h($roles->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Roles', 'action' => 'view', $roles->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Roles', 'action' => 'edit', $roles->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Roles', 'action' => 'delete', $roles->id], ['confirm' => __('Are you sure you want to delete # {0}?', $roles->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
+
+<!-- Content Header -->
+<section class="content-header">
+    <h1><?= __('Users')?><small></small></h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <?= __('Users')?></a></li>
+        <li class="active"><?= __('Users')?> details</li>
+    </ol>
+</section>
+<!-- /Content Header -->
+
+<!-- Main content -->
+<section class="content">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title"><?= __('Users')?> details</h3>
+        </div>
+        <div class="box-body">
+            <table class="table table-bordered view-t">
+                <tbody>
+                                                                <tr>
+                    <th scope="row"><?= __('Username') ?></th>
+                    <td><?= h($user->username) ?></td>
+                </tr>
+                                                                <tr>
+                    <th scope="row"><?= __('Password') ?></th>
+                    <td><?= h($user->password) ?></td>
+                </tr>
+                                                                <tr>
+                    <th scope="row"><?= __('From Where') ?></th>
+                    <td><?= h($user->from_where) ?></td>
+                </tr>
+                                                                                                                <tr>
+                    <th scope="row"><?= __('Id') ?></th>
+                    <td><?= $this->Number->format($user->id) ?></td>
+                </tr>
+                                <tr>
+                    <th scope="row"><?= __('Head Img') ?></th>
+                    <td><?= $this->Number->format($user->head_img) ?></td>
+                </tr>
+                                                                                <tr>
+                    <th scope="row"><?= __('Created') ?></th>
+                    <td><?= h($user->created) ?></td>
+                </tr>
+                                <tr>
+                    <th scope="row"><?= __('Modified') ?></th>
+                    <td><?= h($user->modified) ?></td>
+                </tr>
+                                                                                <tr>
+                    <th scope="row"><?= __('If Active') ?></th>
+                    <td><?= $user->if_active ? __('Yes') : __('No'); ?></td>
+                </tr>
+                                
+
+                </tbody></table>
+
+
+        </div>
+        <div class="box-footer">
+            <a class="btn btn-default" href="<?= $this->Url->build(['action'=>'index',$user->id]) ?>">返回</a>
+        </div>
     </div>
-</div>
+</section>

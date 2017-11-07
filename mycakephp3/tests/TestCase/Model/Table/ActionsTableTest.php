@@ -26,7 +26,12 @@ class ActionsTableTest extends TestCase
     public $fixtures = [
         'app.actions',
         'app.roles',
-        'app.roles_actions'
+        'app.roles_actions',
+        'app.users',
+        'app.user_wechats',
+        'app.user_wechat_openids',
+        'app.wechat_gzhs',
+        'app.users_roles'
     ];
 
     /**
@@ -37,7 +42,7 @@ class ActionsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Actions') ? [] : ['className' => 'App\Model\Table\ActionsTable'];
+        $config = TableRegistry::exists('Actions') ? [] : ['className' => ActionsTable::class];
         $this->Actions = TableRegistry::get('Actions', $config);
     }
 

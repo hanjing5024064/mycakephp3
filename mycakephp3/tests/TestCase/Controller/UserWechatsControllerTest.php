@@ -22,7 +22,8 @@ class UserWechatsControllerTest extends IntegrationTestCase
         'app.actions',
         'app.roles_actions',
         'app.users_roles',
-        'app.user_wechat_openids'
+        'app.user_wechat_openids',
+        'app.wechat_gzhs'
     ];
 
     /**

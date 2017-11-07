@@ -2,12 +2,13 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Event\Event;
 
 /**
  * Users Controller
  *
  * @property \App\Model\Table\UsersTable $Users
+ *
+ * @method \App\Model\Entity\User[] paginate($object = null, array $settings = [])
  */
 class UsersController extends AppController
 {
@@ -42,7 +43,7 @@ class UsersController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Network\Response|null
+     * @return \Cake\Http\Response|void
      */
     public function index()
     {
@@ -56,13 +57,13 @@ class UsersController extends AppController
      * View method
      *
      * @param string|null $id User id.
-     * @return \Cake\Network\Response|null
+     * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => ['Roles']
+            'contain' => ['Roles', 'UserWechats']
         ]);
 
         $this->set('user', $user);
@@ -72,7 +73,7 @@ class UsersController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
     public function add()
     {
@@ -95,7 +96,7 @@ class UsersController extends AppController
      * Edit method
      *
      * @param string|null $id User id.
-     * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
@@ -121,7 +122,7 @@ class UsersController extends AppController
      * Delete method
      *
      * @param string|null $id User id.
-     * @return \Cake\Network\Response|null Redirects to index.
+     * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)

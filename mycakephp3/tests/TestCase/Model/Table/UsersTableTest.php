@@ -25,6 +25,9 @@ class UsersTableTest extends TestCase
      */
     public $fixtures = [
         'app.users',
+        'app.user_wechats',
+        'app.user_wechat_openids',
+        'app.wechat_gzhs',
         'app.roles',
         'app.actions',
         'app.roles_actions',
@@ -39,7 +42,7 @@ class UsersTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Users') ? [] : ['className' => 'App\Model\Table\UsersTable'];
+        $config = TableRegistry::exists('Users') ? [] : ['className' => UsersTable::class];
         $this->Users = TableRegistry::get('Users', $config);
     }
 
@@ -81,16 +84,6 @@ class UsersTableTest extends TestCase
      * @return void
      */
     public function testBuildRules()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test findAuth method
-     *
-     * @return void
-     */
-    public function testFindAuth()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

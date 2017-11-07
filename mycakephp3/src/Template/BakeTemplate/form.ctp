@@ -25,57 +25,113 @@ if (isset($modelObject) && $modelObject->hasBehavior('Tree')) {
     });
 }
 %>
+<!-- Content Header -->
+<?= $this->element('content_header');?>
+<!-- /Content Header -->
 
-<div class="<%= $pluralVar %> form large-9 medium-8 columns content">
+<!-- Main content -->
+<section class="content">
+    <div class="box">
+
     <?= $this->Form->create($<%= $singularVar %>) ?>
-    <fieldset>
-        <legend><?= __('<%= Inflector::humanize($action) %> <%= $singularHumanName %> ') ?></legend>
-        <?php
+        <div class="box-body">
+            <?php
 <%
         foreach ($fields as $field) {
             if (in_array($field, $primaryKey)) {
                 continue;
             }
             if (isset($keyFields[$field])) {
+
+            %>
+            ?>
+
+            <div class='row'>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        <%
+
                 $fieldData = $schema->column($field);
                 if (!empty($fieldData['null'])) {
 %>
-            echo $this->Form->control('<%= $field %>', ['options' => $<%= $keyFields[$field] %>, 'empty' => true]);
+            echo $this->Form->control('<%= $field %>', ['options' => $<%= $keyFields[$field] %>, 'empty' => true, 'class'=>'form-control']);
 <%
                 } else {
 %>
-            echo $this->Form->control('<%= $field %>', ['options' => $<%= $keyFields[$field] %>]);
+            echo $this->Form->control('<%= $field %>', ['options' => $<%= $keyFields[$field] %>, 'class'=>'form-control']);
 <%
                 }
+
+                        %>
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <%
+
                 continue;
             }
             if (!in_array($field, ['created', 'modified', 'updated'])) {
+
+            %>
+            ?>
+
+            <div class='row'>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        <%
+
                 $fieldData = $schema->column($field);
                 if (in_array($fieldData['type'], ['date', 'datetime', 'time']) && (!empty($fieldData['null']))) {
 %>
-            echo $this->Form->control('<%= $field %>', ['empty' => true]);
+            echo $this->Form->control('<%= $field %>', ['empty' => true, 'class'=>'form-control']);
 <%
                } else if(in_array($fieldData['type'], ['int','tinyint','boolean'])){
 %>
-            echo $this->Form->control('<%= $field %>');
+            echo $this->Form->control('<%= $field %>',['class'=>'form-control']);
 <%
                 } else {
 %>
             echo $this->Form->control('<%= $field %>',['class'=>'form-control']);
 <%
                 }
+                        %>
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <%
             }
         }
         if (!empty($associations['BelongsToMany'])) {
             foreach ($associations['BelongsToMany'] as $assocName => $assocData) {
 %>
-            echo $this->Form->control('<%= $assocData['property'] %>._ids', ['options' => $<%= $assocData['variable'] %>]);
+            <div class='row'>
+                <div class="col-md-3">
+                    <div class="form-group">
+            <?php
+            echo $this->Form->control('<%= $assocData['property'] %>._ids', ['options' => $<%= $assocData['variable'] %>, 'class'=>'form-control']);
+            ?>
+                    </div>
+                </div>
+            </div>
 <%
             }
-        }
+            }
 %>
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit'),['class'=>'btn btn-skin']) ?>
+
+        </div>
+        <div class="box-footer">
+            <?= $this->Form->button(__('提交'), ['type' => 'submit', 'class' => 'btn btn-primary']) ?>
+            <?= $this->Form->button(__('重置'), ['type' => 'reset', 'class' => 'btn']) ?>
+        </div>
+
     <?= $this->Form->end() ?>
-</div>
+
+    </div>
+</section>
+<!-- /Main content -->

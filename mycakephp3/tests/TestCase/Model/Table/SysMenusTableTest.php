@@ -35,7 +35,7 @@ class SysMenusTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('SysMenus') ? [] : ['className' => 'App\Model\Table\SysMenusTable'];
+        $config = TableRegistry::exists('SysMenus') ? [] : ['className' => SysMenusTable::class];
         $this->SysMenus = TableRegistry::get('SysMenus', $config);
     }
 

@@ -42,7 +42,7 @@ class UserWechatOpenidsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('UserWechatOpenids') ? [] : ['className' => 'App\Model\Table\UserWechatOpenidsTable'];
+        $config = TableRegistry::exists('UserWechatOpenids') ? [] : ['className' => UserWechatOpenidsTable::class];
         $this->UserWechatOpenids = TableRegistry::get('UserWechatOpenids', $config);
     }
 

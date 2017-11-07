@@ -31,7 +31,14 @@ class SysMenu extends Entity
      * @var array
      */
     protected $_accessible = [
-        '*' => true,
-        'id' => false
+        'name' => true,
+        'parent_id' => true,
+        'lft' => true,
+        'rght' => true,
+        'controller' => true,
+        'action' => true,
+        'menuorder' => true,
+        'parent_sys_menu' => true,
+        'child_sys_menus' => true
     ];
 }

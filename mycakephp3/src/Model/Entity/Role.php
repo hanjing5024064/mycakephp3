@@ -8,10 +8,11 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $name
- * @property \Cake\I18n\Time $created
- * @property \Cake\I18n\Time $modified
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Action[] $actions
+ * @property \App\Model\Entity\User[] $users
  */
 class Role extends Entity
 {
@@ -26,7 +27,10 @@ class Role extends Entity
      * @var array
      */
     protected $_accessible = [
-        '*' => true,
-        'id' => false
+        'name' => true,
+        'created' => true,
+        'modified' => true,
+        'actions' => true,
+        'users' => true
     ];
 }

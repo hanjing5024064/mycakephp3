@@ -13,9 +13,10 @@ use Cake\Auth\DefaultPasswordHasher;
  * @property int $head_img
  * @property string $from_where
  * @property bool $if_active
- * @property \Cake\I18n\Time $created
- * @property \Cake\I18n\Time $modified
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
+ * @property \App\Model\Entity\UserWechat[] $user_wechats
  * @property \App\Model\Entity\Role[] $roles
  */
 class User extends Entity
@@ -31,8 +32,15 @@ class User extends Entity
      * @var array
      */
     protected $_accessible = [
-        '*' => true,
-        'id' => false
+        'username' => true,
+        'password' => true,
+        'head_img' => true,
+        'from_where' => true,
+        'if_active' => true,
+        'created' => true,
+        'modified' => true,
+        'user_wechats' => true,
+        'roles' => true
     ];
 
     /**

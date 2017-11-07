@@ -28,7 +28,7 @@
 			'pc/plugins/jquery.slimscroll.min.js', 
 			'pc/plugins/datepicker.min.js', 
 			'pc/plugins/clockpicker.min.js', 
-			'pc/plugins/address.js', 
+//			'pc/plugins/address.js',
 			'pc/plugins/ztree/jquery.ztree.all-3.5.min.js',
 			'pc/echarts.js',
 			'pc/app.js']); 
@@ -319,6 +319,30 @@
 //						}
 //					});
 				});
+			});
+		</script>
+
+		<script type="text/javascript">
+			$(function() {
+				/*
+				//初始化日期选择插件
+				$(".datepicker").datepicker({
+					language: "zh-CN",
+					format: "yyyy-mm-dd",
+					startDate: "+0d",
+					todayHighlight: true,
+					todayBtn: true
+				}).change(function() {
+					var arr = $(this).val().split("-");
+					//设置真正提交的日期值
+					$("[name='door_time[year]']").val(arr[0]);
+					$("[name='door_time[month]']").val(arr[1]);
+					$("[name='door_time[day]']").val(arr[2]);
+				});
+
+				//初始化地区选择插件
+				addressInit("cmbProvince", "cmbCity", "cmbArea", "上海", "市辖区", "长宁区");
+				*/
 			});
 		</script>
 	</body>

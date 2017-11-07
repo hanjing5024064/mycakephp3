@@ -9,8 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
- * @property \Cake\ORM\Association\HasMany $UserWechats
- * @property \Cake\ORM\Association\BelongsToMany $Roles
+ * @property \App\Model\Table\UserWechatsTable|\Cake\ORM\Association\HasMany $UserWechats
+ * @property \App\Model\Table\RolesTable|\Cake\ORM\Association\BelongsToMany $Roles
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
@@ -64,10 +64,12 @@ class UsersTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
+            ->scalar('username')
             ->requirePresence('username', 'create')
             ->notEmpty('username');
 
         $validator
+            ->scalar('password')
             ->requirePresence('password', 'create')
             ->notEmpty('password');
 
@@ -76,6 +78,7 @@ class UsersTable extends Table
             ->allowEmpty('head_img');
 
         $validator
+            ->scalar('from_where')
             ->allowEmpty('from_where');
 
         $validator
@@ -98,12 +101,5 @@ class UsersTable extends Table
         $rules->add($rules->isUnique(['username']));
 
         return $rules;
-    }
-
-    public function findAuth(\Cake\ORM\Query $query, array $options){
-        $query->select(['id', 'username', 'password'])
-            ->contain(['Roles']);
-
-        return $query;
     }
 }

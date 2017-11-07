@@ -42,7 +42,7 @@ class WechatGzhsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('WechatGzhs') ? [] : ['className' => 'App\Model\Table\WechatGzhsTable'];
+        $config = TableRegistry::exists('WechatGzhs') ? [] : ['className' => WechatGzhsTable::class];
         $this->WechatGzhs = TableRegistry::get('WechatGzhs', $config);
     }
 

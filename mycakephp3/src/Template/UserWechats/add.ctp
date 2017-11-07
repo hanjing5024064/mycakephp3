@@ -1,28 +1,61 @@
 <?php
 /**
-  * @var \App\View\AppView $this
-  */
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\UserWechat $userWechat
+ */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List User Wechats'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List User Wechat Openids'), ['controller' => 'UserWechatOpenids', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User Wechat Openid'), ['controller' => 'UserWechatOpenids', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="userWechats form large-9 medium-8 columns content">
+<!-- Content Header -->
+<?= $this->element('content_header');?>
+<!-- /Content Header -->
+
+<!-- Main content -->
+<section class="content">
+    <div class="box">
+
     <?= $this->Form->create($userWechat) ?>
-    <fieldset>
-        <legend><?= __('Add User Wechat') ?></legend>
-        <?php
-            echo $this->Form->control('user_id', ['options' => $users]);
-            echo $this->Form->control('nickname');
-            echo $this->Form->control('headimgurl');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+        <div class="box-body">
+
+            <div class='row'>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                                    echo $this->Form->control('user_id', ['options' => $users, 'class'=>'form-control']);
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class='row'>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                                    echo $this->Form->control('nickname',['class'=>'form-control']);
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class='row'>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                                    echo $this->Form->control('headimgurl',['class'=>'form-control']);
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="box-footer">
+            <?= $this->Form->button(__('提交'), ['type' => 'submit', 'class' => 'btn btn-primary']) ?>
+            <?= $this->Form->button(__('重置'), ['type' => 'reset', 'class' => 'btn']) ?>
+        </div>
+
     <?= $this->Form->end() ?>
-</div>
+
+    </div>
+</section>
+<!-- /Main content -->

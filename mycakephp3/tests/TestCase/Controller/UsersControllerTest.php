@@ -17,6 +17,9 @@ class UsersControllerTest extends IntegrationTestCase
      */
     public $fixtures = [
         'app.users',
+        'app.user_wechats',
+        'app.user_wechat_openids',
+        'app.wechat_gzhs',
         'app.roles',
         'app.actions',
         'app.roles_actions',

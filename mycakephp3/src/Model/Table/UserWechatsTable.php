@@ -9,8 +9,8 @@ use Cake\Validation\Validator;
 /**
  * UserWechats Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Users
- * @property \Cake\ORM\Association\HasMany $UserWechatOpenids
+ * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
+ * @property \App\Model\Table\UserWechatOpenidsTable|\Cake\ORM\Association\HasMany $UserWechatOpenids
  *
  * @method \App\Model\Entity\UserWechat get($primaryKey, $options = [])
  * @method \App\Model\Entity\UserWechat newEntity($data = null, array $options = [])
@@ -63,9 +63,11 @@ class UserWechatsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
+            ->scalar('nickname')
             ->allowEmpty('nickname');
 
         $validator
+            ->scalar('headimgurl')
             ->allowEmpty('headimgurl');
 
         return $validator;

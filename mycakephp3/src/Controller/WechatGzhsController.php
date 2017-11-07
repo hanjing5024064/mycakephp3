@@ -7,6 +7,8 @@ use App\Controller\AppController;
  * WechatGzhs Controller
  *
  * @property \App\Model\Table\WechatGzhsTable $WechatGzhs
+ *
+ * @method \App\Model\Entity\WechatGzh[] paginate($object = null, array $settings = [])
  */
 class WechatGzhsController extends AppController
 {
@@ -14,7 +16,7 @@ class WechatGzhsController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Network\Response|null
+     * @return \Cake\Http\Response|void
      */
     public function index()
     {
@@ -28,7 +30,7 @@ class WechatGzhsController extends AppController
      * View method
      *
      * @param string|null $id Wechat Gzh id.
-     * @return \Cake\Network\Response|null
+     * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
@@ -44,7 +46,7 @@ class WechatGzhsController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
     public function add()
     {
@@ -66,7 +68,7 @@ class WechatGzhsController extends AppController
      * Edit method
      *
      * @param string|null $id Wechat Gzh id.
-     * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
@@ -91,7 +93,7 @@ class WechatGzhsController extends AppController
      * Delete method
      *
      * @param string|null $id Wechat Gzh id.
-     * @return \Cake\Network\Response|null Redirects to index.
+     * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)

@@ -12,8 +12,8 @@ use Cake\ORM\Entity;
  * @property string $openid
  * @property string $uuid
  * @property int $status
- * @property \Cake\I18n\Time $created
- * @property \Cake\I18n\Time $modified
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\UserWechat $user_wechat
  * @property \App\Model\Entity\WechatGzh $wechat_gzh
@@ -31,7 +31,14 @@ class UserWechatOpenid extends Entity
      * @var array
      */
     protected $_accessible = [
-        '*' => true,
-        'id' => false
+        'user_wechat_id' => true,
+        'wechat_gzh_id' => true,
+        'openid' => true,
+        'uuid' => true,
+        'status' => true,
+        'created' => true,
+        'modified' => true,
+        'user_wechat' => true,
+        'wechat_gzh' => true
     ];
 }

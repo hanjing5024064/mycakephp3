@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Actions Model
  *
- * @property \Cake\ORM\Association\BelongsToMany $Roles
+ * @property \App\Model\Table\RolesTable|\Cake\ORM\Association\BelongsToMany $Roles
  *
  * @method \App\Model\Entity\Action get($primaryKey, $options = [])
  * @method \App\Model\Entity\Action newEntity($data = null, array $options = [])
@@ -60,12 +60,15 @@ class ActionsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
+            ->scalar('name')
             ->allowEmpty('name');
 
         $validator
+            ->scalar('controller')
             ->allowEmpty('controller');
 
         $validator
+            ->scalar('action')
             ->allowEmpty('action');
 
         return $validator;

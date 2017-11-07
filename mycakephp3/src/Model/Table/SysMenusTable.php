@@ -9,8 +9,8 @@ use Cake\Validation\Validator;
 /**
  * SysMenus Model
  *
- * @property \Cake\ORM\Association\BelongsTo $ParentSysMenus
- * @property \Cake\ORM\Association\HasMany $ChildSysMenus
+ * @property \App\Model\Table\SysMenusTable|\Cake\ORM\Association\BelongsTo $ParentSysMenus
+ * @property \App\Model\Table\SysMenusTable|\Cake\ORM\Association\HasMany $ChildSysMenus
  *
  * @method \App\Model\Entity\SysMenu get($primaryKey, $options = [])
  * @method \App\Model\Entity\SysMenu newEntity($data = null, array $options = [])
@@ -64,15 +64,19 @@ class SysMenusTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
+            ->scalar('name')
             ->allowEmpty('name');
 
         $validator
+            ->scalar('controller')
             ->allowEmpty('controller');
 
         $validator
+            ->scalar('action')
             ->allowEmpty('action');
 
         $validator
+            ->scalar('menuorder')
             ->allowEmpty('menuorder');
 
         return $validator;

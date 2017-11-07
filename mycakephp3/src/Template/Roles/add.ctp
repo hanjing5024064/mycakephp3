@@ -1,25 +1,59 @@
 <?php
 /**
-  * @var \App\View\AppView $this
-  */
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Role $role
+ */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Roles'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Actions'), ['controller' => 'Actions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Action'), ['controller' => 'Actions', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="roles form large-9 medium-8 columns content">
-    <?= $this->Form->create($role) ?>
-    <fieldset>
-        <legend><?= __('Add Role') ?></legend>
-        <?php
-            echo $this->Form->control('name');
-            echo $this->Form->control('actions._ids', ['options' => $actions]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+<!-- Content Header -->
+<?= $this->element('content_header'); ?>
+<!-- /Content Header -->
+
+<!-- Main content -->
+<section class="content">
+    <div class="box">
+
+        <?= $this->Form->create($role) ?>
+        <div class="box-body">
+            <?php
+            ?>
+
+            <div class='row'>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->Form->control('name', ['class' => 'form-control']);
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->Form->control('actions._ids', ['options' => $actions, 'class' => 'form-control']);
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class='row'>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->Form->control('users._ids', ['options' => $users, 'class' => 'form-control']);
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="box-footer">
+            <?= $this->Form->button(__('提交'), ['type' => 'submit', 'class' => 'btn btn-primary']) ?>
+            <?= $this->Form->button(__('重置'), ['type' => 'reset', 'class' => 'btn']) ?>
+        </div>
+
+        <?= $this->Form->end() ?>
+
+    </div>
+</section>
+<!-- /Main content -->
