@@ -86,6 +86,7 @@ class MyWechatComponent extends Component
         });
         $response = $server->serve();
         $response->send();
+        exit();
     }
 
     //处理关注逻辑,发送欢迎消息
