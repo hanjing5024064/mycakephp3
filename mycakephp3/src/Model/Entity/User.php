@@ -8,6 +8,7 @@ use Cake\Auth\DefaultPasswordHasher;
  * User Entity
  *
  * @property int $id
+ * @property string $uuid
  * @property string $username
  * @property string $password
  * @property int $head_img
@@ -32,6 +33,7 @@ class User extends Entity
      * @var array
      */
     protected $_accessible = [
+        'uuid' => true,
         'username' => true,
         'password' => true,
         'head_img' => true,
