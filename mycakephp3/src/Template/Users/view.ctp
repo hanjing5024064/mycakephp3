@@ -26,10 +26,6 @@
             <table class="table table-bordered view-t">
                 <tbody>
                                                                 <tr>
-                    <th scope="row"><?= __('Uuid') ?></th>
-                    <td><?= h($user->uuid) ?></td>
-                </tr>
-                                                                <tr>
                     <th scope="row"><?= __('Username') ?></th>
                     <td><?= h($user->username) ?></td>
                 </tr>

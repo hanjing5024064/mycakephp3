@@ -64,10 +64,6 @@ class UsersTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->scalar('uuid')
-            ->allowEmpty('uuid');
-
-        $validator
             ->scalar('username')
             ->requirePresence('username', 'create')
             ->notEmpty('username');

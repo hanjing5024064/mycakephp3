@@ -19,17 +19,6 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <?php
-                                    echo $this->Form->control('uuid',['class'=>'form-control']);
-                        ?>
-                    </div>
-                </div>
-            </div>
-
-            
-            <div class='row'>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <?php
                                     echo $this->Form->control('username',['class'=>'form-control']);
                         ?>
                     </div>
