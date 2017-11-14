@@ -26,11 +26,13 @@ class MyWechatComponent extends Component
         parent::initialize($config);
         $this->controller = $controller = $this->_registry->getController();
 
+        /*
         //微信配置参数
         $this->wxConfig = Configure::read('wx_config');
         $this->wxButtons = Configure::read('wx_buttons');
         $this->wxIndex = Configure::read('wx_index');
         $this->baseURL = Configure::read('wx_base_url');
+         */
         //模板消息ID数组
         $this->templates = Configure::read('wx_templates');
 
@@ -99,8 +101,8 @@ class MyWechatComponent extends Component
 
             //处理用户信息
             $this->controller->loadComponent('MyUser');
-            $userInfo = ['uuid'=>$openid, 'nickname'=>$user->nickname, 'avatar'=>$user->headimgurl];
-            $userId = $this->controller->MyUser->checkUserOpenidV2($userInfo, $this->WechatGzhId);
+            $userInfo = ['uuid'=>$user->unionid, 'openid'=>$openid, 'nickname'=>$user->nickname, 'avatar'=>$user->headimgurl];
+            $userId = $this->controller->MyUser->checkUserOpenidV3($userInfo, $this->WechatGzhId);
             //保存当前用户ID到Session中
             if($userId !== false)
                 $this->controller->request->session()->write('userId', $userId);

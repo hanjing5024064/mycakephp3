@@ -232,6 +232,106 @@ class MyUserComponent extends Component
         return $userId;
     }
 
+    /**
+     * 公众号关注后保存用户信息
+     * 不存在公众号用户信息,则建立用户-微信用户-公众号用户信息;
+     * 存在公众号用户信息,则更新微信用户信息,用户可能在取关期间修改过昵称\头像
+     * @param array $userInfo
+     * @param int $wechatGzhId
+     * @return bool
+     */
+    public function checkUserOpenidV3(array $userInfo = [], $wechatGzhId = 1)
+    {
+        if (!array_key_exists('openid', $userInfo) || empty($userInfo['openid'])) return false;
+        if(array_key_exists('nickname', $userInfo) && !empty($userInfo['nickname']))$nickname = $userInfo['nickname'];
+        else $nickname = '未设置';
+
+        if(array_key_exists('avatar', $userInfo) && !empty($userInfo['avatar']))$avatar = $userInfo['avatar'];
+        else $avatar = '未设置';
+
+        $uuid = $userInfo['uuid'];
+        $openid = $userInfo['openid'];
+
+        //查找openid已注册用户
+        $this->controller->loadModel('Users');//用户信息
+        $usersTable = $this->controller->Users;
+        $this->controller->loadModel('UserWechats');//用户微信信息
+        $userWechatsTable = $this->controller->UserWechats;
+        $this->controller->loadModel('UserWechatOpenids');//用户公众号信息
+        $userWechatOpenidsTable = $this->controller->UserWechatOpenids;
+
+        $userWechatOpenidData = $userWechatOpenidsTable
+            ->find()
+            ->where(['openid' => $openid, 'wechat_gzh_id' => $wechatGzhId])
+            ->first();
+
+        //公众号用户不存在,则新增用户信息-微信用户信息
+        if ($userWechatOpenidData === null) {
+            //是否已经存在用户
+            $userData = $usersTable
+                ->find()
+                ->where(['username' => $openid])
+                ->first();
+
+            if($userData === null){
+                //新增用户
+                $userData = $usersTable->newEntity();
+                $userData->username = $openid;
+                $userData->password = $openid;
+                $usersTable->save($userData);
+            }
+            $userId = $userData->id;
+
+            //是否已存在微信用户
+            $userWechatData = $userWechatsTable
+                ->find()
+                ->where(['user_id' => $userId])
+                ->first();
+            if($userWechatData === null){
+                //新增微信用户
+                $userWechats = $userWechatsTable->newEntity();
+            }
+            $userWechats->user_id = $userId;
+            $userWechats->nickname = $nickname;
+            $userWechats->headimgurl = $avatar;
+
+            if ($userWechatsTable->save($userWechats)) {
+                $userWechatId = $userWechats->id;
+
+                //新增公众号用户
+                $userWechatOpenids = $userWechatOpenidsTable->newEntity();
+                $userWechatOpenids->user_wechat_id = $userWechatId;
+                $userWechatOpenids->wechat_gzh_id = $wechatGzhId;//@todo 默认第一个公众号
+                $userWechatOpenids->openid = $openid;
+                $userWechatOpenids->uuid = $uuid;
+                $userWechatOpenids->status = 1;//关注公众号
+                if ($userWechatOpenidsTable->save($userWechatOpenids))
+                    return $userId;
+            }
+        } else//公众号用户已经存在,则更新微信用户信息
+        {
+            //更新关注状态
+            $userWechatOpenidData->status = 1;
+            if($uuid !== null)$userWechatOpenidData->uuid = $uuid;
+            $userWechatOpenidsTable->save($userWechatOpenidData);
+
+            $userWechats = $userWechatsTable
+                ->find()
+                ->where(['id' => $userWechatOpenidData->user_wechat_id])
+                ->first();
+
+            //更新微信用户信息,用户可能在取关期间修改过昵称\头像
+            if ($userWechats !== null) {
+                $userWechats->nickname = $nickname;
+                $userWechats->headimgurl = $avatar;
+                $userWechatsTable->save($userWechats);
+                $userId = $userWechats->user_id;
+            }
+        }
+
+        return $userId;
+    }
+
     //获得用户维修单数量
     public function getUserServiceRepairCount($userId = null)
     {
