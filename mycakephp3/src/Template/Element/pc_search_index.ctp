@@ -77,6 +77,7 @@
         ?>
         <td colspan="3"><?= $this->Form->button(__('搜索'), ['type' => 'submit', 'class' => 'btn btn-skin btn-sm']) ?>
         </td>
+    </tr>
     </tbody>
 </table>
 
