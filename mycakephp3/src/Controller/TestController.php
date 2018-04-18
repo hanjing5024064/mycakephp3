@@ -19,4 +19,16 @@ class TestController extends AppController
     public function bootstrap(){
         $this->viewBuilder()->setLayout('pc_bootstrap');
     }
+
+    public function test(){
+        $this->viewBuilder()->setLayout(false);
+        $this->loadModel('UserWechatOpenids');
+        $user = $this->UserWechatOpenids
+            ->find()
+            ->where(['openid' => 'abcde', 'wechat_gzh_id' => 1])
+            ->first();
+
+        if($user === null)echo 'no this user';
+        debug($user);
+    }
 }
