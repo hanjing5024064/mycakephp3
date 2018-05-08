@@ -1,8 +1,10 @@
 # mycakephp3
+====
 用cakephp3实现的一些功能: 用户/角色，菜单, 微信...
 some functions use cakephp3: user/role, menu, wechat...
 
 #install/安装
+----
 0. 
  clone code/下载代码
   git clone https://github.com/hanjing5024064/mycakephp3.git
@@ -34,6 +36,7 @@ some functions use cakephp3: user/role, menu, wechat...
 4. visite/访问
 
 微信接入
+----
 V0.0.2
 1. 数据表wechat_gzhs中增加公众号配置信息
 2. routes.php去掉L49的注释,注释L55
