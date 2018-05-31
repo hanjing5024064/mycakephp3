@@ -75,7 +75,7 @@
 
    hwId是步骤1添加的记录的ID;
 
-4.routes.php去掉L55的注释,注释L49
+4. routes.php去掉L55的注释,注释L49
 
    //服务器接入使用, 微信后台配置访问路径http://your.com/wc/
 
