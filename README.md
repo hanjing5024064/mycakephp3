@@ -1,6 +1,6 @@
 # mycakephp3
 
-   用cakephp3实现中国特色功能: 用户/角色，菜单, 微信...更适合中国用户,就像Eclipse和MyEclipse :)
+   用cakephp3实现中国特色功能: 用户/角色, 菜单, 微信...更适合中国用户, 就像Eclipse和MyEclipse :)
 
 ## 安装
 
