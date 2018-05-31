@@ -42,15 +42,23 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
+                <li><a target="_self" href="<?= $this->Url->build(['controller'=>'Users', 'action'=>'logout'])?>">登出</a></li>
                 <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
                 <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
             </ul>
             <div>
                 <label>已授权菜单</label>
                 <select>
-                    <?php //foreach():?>
-                        <option></option>
-                    <?php //endforeach;?>
+                    <?php
+                    if($this->request->session()->check('menuActions')){
+                        $menus = $this->request->session()->read('menuActions');
+                        if(count($menus) > 0){
+                            foreach($menus as $menu){
+                                echo "<option>{$menu['name']}</option>";
+                            }
+                        }
+                    }
+                    ?>
                 </select>
             </div>
             <div>

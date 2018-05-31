@@ -141,9 +141,16 @@ class MyAuthComponent extends Component
     }
 
     public function setNowMenu(){
+        $menuActiveOne = 'NotFind';//一级菜单序号
+        $menuActiveTwo = 'NotFind';//二级菜单序号
+        //初始化nowMenu
+        $this->request->session()->write('nowMenu', [$menuActiveOne, $menuActiveTwo]);
+
+        //当前访问控制器及方法
         $nowAction = empty($this->controller->request->param('action')) ? 'index' : $this->request->param('action');
         $nowController = $this->controller->request->param('controller');
-        if(!$this->request->session()->check('nowMenu'))$this->request->session()->write('nowMenu', ['o', 'o']);
+
+        //查找当前菜单
         $i = 0;
         $menuActions = $this->request->session()->read('menuActions');
         if(!$menuActions)return false;
@@ -192,5 +199,6 @@ class MyAuthComponent extends Component
         $this->controller->request->session()->delete('roleActions');
         $this->controller->request->session()->delete('menuActions');
         $this->controller->request->session()->delete('searchArray');
+        $this->controller->request->session()->delete('nowMenu');
     }
 }

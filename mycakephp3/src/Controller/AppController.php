@@ -57,25 +57,32 @@ class AppController extends Controller
 
         $this->loadComponent('Auth', [
             'authorize' => [
-                'controller'
+                'Controller'
             ],
             'authenticate' => [
                 'Form' => [
-                    'finder' => 'auth'
+                    'finder' => 'auth',
+                    'fields' => [
+                        'username' => 'username',
+                        'password' => 'password'
+                    ]
                 ]
             ],
             'loginRedirect' => [
-                'controller' => 'Users',
+                'controller' => 'WechatGzhs',
                 'action' => 'index'
             ],
             'logoutRedirect' => [
                 'controller' => 'Users',
-                'action' => 'login',
-                'home'
-            ]
+                'action' => 'login'
+            ],
+            'unauthorizedRedirect' => $this->referer()
         ]);
 
         $this->viewBuilder()->setLayout('pc');
+
+        //调试时可以打开所有方法的访问授权
+//        $this->Auth->allow();
     }
 
     /**
