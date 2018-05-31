@@ -193,7 +193,7 @@
 		        <div class="pull-right hidden-xs">
 		          	版本 V1.0
 		        </div>
-		        Copyright &copy; 2017 <a href="http://www.shhwxx.cn/" target="_blank">上海鸿维信息技术有限公司</a> 版权所有
+		        Copyright &copy; 2017 <a href="#" target="_blank">###</a> 版权所有
       		</footer>
       		<!-- /Main Footer -->
       		
