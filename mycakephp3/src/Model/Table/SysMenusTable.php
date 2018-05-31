@@ -20,6 +20,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\SysMenu[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\SysMenu findOrCreate($search, callable $callback = null, $options = [])
  *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Cake\ORM\Behavior\TreeBehavior
  */
 class SysMenusTable extends Table
@@ -39,6 +40,7 @@ class SysMenusTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
+        $this->addBehavior('Timestamp');
         $this->addBehavior('Tree');
 
         $this->belongsTo('ParentSysMenus', [
@@ -65,7 +67,8 @@ class SysMenusTable extends Table
 
         $validator
             ->scalar('name')
-            ->allowEmpty('name');
+            ->requirePresence('name', 'create')
+            ->notEmpty('name');
 
         $validator
             ->scalar('controller')
@@ -76,8 +79,12 @@ class SysMenusTable extends Table
             ->allowEmpty('action');
 
         $validator
-            ->scalar('menuorder')
+            ->integer('menuorder')
             ->allowEmpty('menuorder');
+
+        $validator
+            ->scalar('icon')
+            ->allowEmpty('icon');
 
         return $validator;
     }

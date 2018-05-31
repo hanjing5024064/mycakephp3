@@ -36,6 +36,9 @@
                                                 <th scope="col"><?= $this->Paginator->sort('controller') ?></th>
                                                 <th scope="col"><?= $this->Paginator->sort('action') ?></th>
                                                 <th scope="col"><?= $this->Paginator->sort('menuorder') ?></th>
+                                                <th scope="col"><?= $this->Paginator->sort('icon') ?></th>
+                                                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                                                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                                                 <th scope="col" class="actions"><?= __('Actions') ?></th>
                             </tr>
                         </thead>
@@ -47,7 +50,10 @@
                                                                 <td><?= $sysMenu->has('parent_sys_menu') ? $this->Html->link($sysMenu->parent_sys_menu->name, ['controller' => 'SysMenus', 'action' => 'view', $sysMenu->parent_sys_menu->id]) : '' ?></td>
                                                                 <td><?= h($sysMenu->controller) ?></td>
                                                                 <td><?= h($sysMenu->action) ?></td>
-                                                                <td><?= h($sysMenu->menuorder) ?></td>
+                                                                <td><?= $this->Number->format($sysMenu->menuorder) ?></td>
+                                                                <td><?= h($sysMenu->icon) ?></td>
+                                                                <td><?= h($sysMenu->created) ?></td>
+                                                                <td><?= h($sysMenu->modified) ?></td>
                                                                 <td class="actions">
                                             <?= $this->Html->link(__('View'), ['action' => 'view', $sysMenu->id]) ?>
                                             <?= $this->Html->link(__('Edit'), ['action' => 'edit', $sysMenu->id]) ?>

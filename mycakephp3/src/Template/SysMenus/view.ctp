@@ -42,8 +42,8 @@
                     <td><?= h($sysMenu->action) ?></td>
                 </tr>
                                                                 <tr>
-                    <th scope="row"><?= __('Menuorder') ?></th>
-                    <td><?= h($sysMenu->menuorder) ?></td>
+                    <th scope="row"><?= __('Icon') ?></th>
+                    <td><?= h($sysMenu->icon) ?></td>
                 </tr>
                                                                                                                 <tr>
                     <th scope="row"><?= __('Id') ?></th>
@@ -57,7 +57,19 @@
                     <th scope="row"><?= __('Rght') ?></th>
                     <td><?= $this->Number->format($sysMenu->rght) ?></td>
                 </tr>
-                                                                
+                                <tr>
+                    <th scope="row"><?= __('Menuorder') ?></th>
+                    <td><?= $this->Number->format($sysMenu->menuorder) ?></td>
+                </tr>
+                                                                                <tr>
+                    <th scope="row"><?= __('Created') ?></th>
+                    <td><?= h($sysMenu->created) ?></td>
+                </tr>
+                                <tr>
+                    <th scope="row"><?= __('Modified') ?></th>
+                    <td><?= h($sysMenu->modified) ?></td>
+                </tr>
+                                                
 
                 </tbody></table>
 

@@ -70,6 +70,17 @@
             </div>
 
             
+            <div class='row'>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                                    echo $this->Form->control('icon',['class'=>'form-control']);
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            
         </div>
         <div class="box-footer">
             <?= $this->Form->button(__('提交'), ['type' => 'submit', 'class' => 'btn btn-primary']) ?>

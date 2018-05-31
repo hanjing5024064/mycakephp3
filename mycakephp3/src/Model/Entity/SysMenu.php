@@ -13,7 +13,10 @@ use Cake\ORM\Entity;
  * @property int $rght
  * @property string $controller
  * @property string $action
- * @property string $menuorder
+ * @property int $menuorder
+ * @property string $icon
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\SysMenu $parent_sys_menu
  * @property \App\Model\Entity\SysMenu[] $child_sys_menus
@@ -38,6 +41,9 @@ class SysMenu extends Entity
         'controller' => true,
         'action' => true,
         'menuorder' => true,
+        'icon' => true,
+        'created' => true,
+        'modified' => true,
         'parent_sys_menu' => true,
         'child_sys_menus' => true
     ];
