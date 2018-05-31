@@ -5,9 +5,11 @@
 ## 安装
 
 - 下载代码
+
    git clone https://github.com/hanjing5024064/mycakephp3.git
   
 - 安装依赖
+
    在mycakephp3/路径下运行'composer install'.
 
    ? 如果无法安装依赖，请下载压缩包vendor.zip, 解压到mycakephp3路径下
@@ -17,6 +19,7 @@
 1. 数据库
 
    创建数据库'databasename'
+
    导入sql文件mycakephp3.sql
 
 2. 时区设置（默认Asia/Shanghai）
@@ -24,6 +27,7 @@
    config/bootstrap.php
 
    第102行 修改为自己的时区:
+
    date_default_timezone_set('Asia/Shanghai');
 
 3. 本地化\数据库连接设置, 默认zh_CN
@@ -31,9 +35,11 @@
    config/app.php
 
    第42行
+
    'defaultLocale' => env('APP_DEFAULT_LOCALE', 'zh_CN'),
 
    第220行
+
    'Datasources' => [
       ...
       'username' => 'cakephp',
@@ -41,6 +47,7 @@
       'database' => 'mycakephp3',
       ...
    ]
+
    修改为你的数据库链接参数
 
 4. 访问
@@ -66,7 +73,7 @@
 
    设置服务器地址为http://yourdomain/wc?hwId=1
 
-   hwId是步骤1添加的记录的ID
+   hwId是步骤1添加的记录的ID;
 
 4.routes.php去掉L55的注释,注释L49
 
