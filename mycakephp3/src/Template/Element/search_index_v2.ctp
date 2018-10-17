@@ -67,7 +67,7 @@ foreach ($fields as $eachField):
                     [
                         'placeholder' => $eachField['label'],
                         'label' => false,
-                        'class' => 'form-control',
+                        'class' => 'form-control searchInput',
                         'value' => $sessionSearch
                     ]
                 );
@@ -87,7 +87,8 @@ foreach ($fields as $eachField):
                         'id' => $this->request->param('controller') . '[' . $eachField['type'] . '-' . $eachField['column'] . ']',
                         'hiddenField' => false,
                         'value' => 1,
-                        'checked' => $sessionSearch?true:false
+                        'checked' => $sessionSearch?true:false,
+                        'class' => 'searchCheckbox'
                     ]
                 );
                 ?>
@@ -109,7 +110,7 @@ foreach ($fields as $eachField):
                     [
                         'placeholder' => $eachField['label'].'大于',
                         'label' => false,
-                        'class' => 'form-control form_date',
+                        'class' => 'form-control form_date searchInput',
                         'value' => ($sessionSearch && array_key_exists('start', $sessionSearch))?$sessionSearch['start']:''
                     ]
                 );
@@ -128,7 +129,7 @@ foreach ($fields as $eachField):
                     [
                         'placeholder' => $eachField['label'].'小于',
                         'label' => false,
-                        'class' => 'form-control form_date',
+                        'class' => 'form-control form_date searchInput',
                         'value' => ($sessionSearch && array_key_exists('end', $sessionSearch))?$sessionSearch['end']:''
                     ]
                 );
@@ -151,7 +152,7 @@ foreach ($fields as $eachField):
                         'options' => $eachField['option'],
                         'empty' => __('all'),
                         'label' => false,
-                        'class' => 'form-control',
+                        'class' => 'form-control searchSelect',
                         'value' => $sessionSearch
                     ]
                 );
@@ -200,3 +201,17 @@ foreach ($fields as $eachField):
     </div>
     <!--操作按钮 end-->
 <?= $this->Form->end() ?>
+
+    <script>
+        $(function () {
+            $('#resetSearch').click(function () {
+                $(".searchSelect").find("option:first").prop("selected", true);
+                $('.searchSelect').change();
+
+                $('.searchInput').val('');
+
+                $('.searchCheckbox').prop("checked",false);
+                return false;
+            });
+        });
+    </script>
