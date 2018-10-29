@@ -19,9 +19,32 @@ class UsersController extends AppController
         $this->Auth->allow(['add', 'login', 'logout']);
     }
 
+    {
+        $this->viewBuilder()->setLayout('login');
+
     public function login()
     {
         $this->viewBuilder()->setLayout('login');
+        //if autologin from uc
+        if(array_key_exists('timestamp', $_GET) &&
+            Uc::checkSignature('djifel', $_GET['timestamp'], $_GET['signature'])){
+            if(array_key_exists('userId', $_GET))//用户已绑定微信
+            {
+                $userId = $_GET['userId'];
+                $user = $this->Users->findById($userId)->contain(['Roles'])->first()->toArray();
+                if($user){
+                    /**
+                     * your login business here
+                     */
+
+                }
+            }
+            elseif(array_key_exists('getOpenId', $_GET))//用户未绑定微信
+            {
+                $openId = $_GET('getOpenId');
+            }
+        }
+
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {

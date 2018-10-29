@@ -177,6 +177,29 @@ class MyWechatComponent extends Component
         exit();
     }
 
+    //微信自动登录/获得openid
+    public function loginV2($targetUrl = '/mb'){
+        $app = $this->application;
+        $oauth = $app->oauth;
+
+        $nowAction = empty($this->controller->request->param('action'))?'index':$this->request->param('action');
+        $nowController = $this->controller->request->param('controller');
+        if($nowController == 'Interface'){
+            switch($nowAction){
+                case 'getOpenId':
+                case 'wechatAutoLogin':
+                    $targetUrl = $targetUrl . $nowController . '-' . $nowAction;
+                    break;
+            }
+        }
+
+        $this->controller->request->session()->write('target_url', $targetUrl);
+        $this->controller->request->getSession()->write('wechatGzhId', $this->WechatGzhId);
+        //return $oauth->redirect();
+        // 这里不一定是return，如果你的框架action不是返回内容的话你就得使用
+        $oauth->redirect()->send();
+        exit();
+    }
     //微信自动登录
     public function login($targetUrl = '/mb'){
         $app = $this->application;
@@ -203,7 +226,33 @@ class MyWechatComponent extends Component
 
 //        $this->controller->request->session()->write('userId', 16);
 //        return 'http://rm.shhwxx.com.cn/MB/index?hwId=3';
-        return empty($this->controller->request->session()->read('target_url')) ? '/' : $this->controller->request->session()->read('target_url');
+
+        $redirectUrl = empty($this->controller->request->session()->read('target_url')) ? '/' : $this->controller->request->session()->read('target_url');
+
+        //->外部系统请求接口
+        if(strpos($redirectUrl, 'Interface-') !== false){
+            $appId = $this->controller->request->session()->read('appId');
+            $tmp = explode('Interface-', $redirectUrl);
+
+            $timestamp = strtotime('now');
+            $signedPara = 'timestamp='.$timestamp.'&signature='.Uc::getSignature($appId,$timestamp);
+            switch($tmp[1]){
+                case 'getOpenId'://获得appid
+                    $getPara = $tmp[1].'='.$user->openid;
+                    break;
+                case 'wechatAutoLogin'://自动登录
+                    $subsystemuserId = $this->controller->MyUser->getSybsystemUserid($appId, $user->openid);
+                    if($subsystemuserId){//绑定了子系统用户,则回传子系统用户id
+                        $getPara = 'userId='.$subsystemuserId.'&'.$signedPara;
+                    }else//未绑定子系统用户回传openid
+                        $getPara = 'getOpenId='.$user->openid.'&'.$signedPara;
+                    break;
+            }
+            $redirectUrl = $tmp[0].'/?'.$getPara;
+        }
+        //->外部系统请求接口
+
+        return $redirectUrl;
     }
 
     //接入
