@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Freelife\Security\Uc;
 
 /**
  * Users Controller
@@ -16,18 +17,33 @@ class UsersController extends AppController
     {
         parent::initialize();
         $this->loadComponent('MyAuth');
-        $this->Auth->allow(['add', 'login', 'logout']);
+        $this->Auth->allow(['add', 'login', 'logout', 'signup']);
     }
 
+    public function signup()
     {
         $this->viewBuilder()->setLayout('login');
+        $user = $this->Users->newEntity();
+        if ($this->request->is('post')) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+        }
+        $roles = $this->Users->Roles->find('list', ['limit' => 200]);
+        $this->set(compact('user', 'roles'));
+        $this->set('_serialize', ['user']);
+    }
 
     public function login()
     {
         $this->viewBuilder()->setLayout('login');
         //if autologin from uc
         if(array_key_exists('timestamp', $_GET) &&
-            Uc::checkSignature('djifel', $_GET['timestamp'], $_GET['signature'])){
+            Uc::checkSignature('djifel', $_GET['signature'], $_GET['timestamp'])){
             if(array_key_exists('userId', $_GET))//用户已绑定微信
             {
                 $userId = $_GET['userId'];
